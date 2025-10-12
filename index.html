@@ -24,6 +24,13 @@
         </div>
     </nav>
     <button class="backBtn fa fa-arrow-left" onclick="openPage(nextBackPage,currentPage)"></button>
+    <center>
+        <ul id="mainPages">
+            <li onclick="openMainPage('hadees.html',`fetch_books`)">Hadees</li>
+            <li onclick="openMainPage('quran.html','getSuratNames')">Quran</li>
+            <li>Duas</li>
+        </ul>
+    </center>
     <center class="staicInfo" style="width: 100%;">
         <svg aria-label="Bismillah" height="43.72193500738552px" viewBox="0 0 541.6 118.399" width="200px"
             xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="m-auto grayscale">
@@ -33,15 +40,28 @@
         </svg>
         <h1>Al-Kitaab</h1>
     </center>
-    <div class="booksContainer" id="booksContainer"></div>
+    <div id="mainContent">
+        <div class="booksContainer" id="booksContainer"></div>
     <div id="bookOpened" class="bookOpened close">
         <a href="#openBookTop" id="openBookTop"></a>
         <a name="openBookTop"></a>
     </div>
     <div class="hadithOpened" id="hadithOpened"></div>
+    </div>
     <div id="cover"></div>
-    <script src="JS/fetchAllBooks.js"></script>
-    <script src="JS/scrollBar.js"></script>
 </body>
-
-</html> 
+<script src="JS/fetchAllBooks.js"></script>
+<script src="JS/scrollBar.js"></script>
+<script src="JS/fetchQuran.js"></script>
+<script>
+    function openMainPage(pageName,fetchFunction) {
+        fetch(`./Pages/${pageName}`).then(res => {
+            return res.text();
+        }).then(data => {
+            console.log(data);
+            document.getElementById('mainContent').innerHTML = data;
+            eval(`${fetchFunction}()`);
+        });
+    }
+</script>
+</html>

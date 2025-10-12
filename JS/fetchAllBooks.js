@@ -1,4 +1,4 @@
-const booksContainer = document.querySelector('.booksContainer');
+var booksContainer = document.querySelector('.booksContainer');
 const bookOpened = document.querySelector('#bookOpened');
 const openBookTop = document.getElementById('openBookTop');
 const cover = document.getElementById('cover');
@@ -8,18 +8,18 @@ var allBooks;
 var BookData;
 let currentHadith, currentLastH, currentStartH, currentTH;
 function fetch_books() {
-    displayBooksSkeleton(32)
+    displayBooksSkeleton(32);
     fetch("https://www.thaqalayn-api.net/api/v2/allbooks").then(res => {
         return res.json();
     }).then(data => {
         booksContainer.innerHTML = '';
         allBooks = data;
-
         displayBooks(allBooks, data.length);
-        // console.log(data);
+        
     }).catch(err => {
         console.log(err)
     });
+    console.log()
 }
 function displayBooksSkeleton(number) {
     for (var i = 0; i <= number; i++) {
@@ -31,9 +31,8 @@ function displayBooksSkeleton(number) {
                 <div class="name"></div>
                 <div class="transName"></div>
                 <div class="auName"></div>`
-        booksContainer.appendChild(element);
+        document.querySelector('.booksContainer').appendChild(element);
     }
-
 }
 fetch_books();
 function displayBooks(books, length) {
