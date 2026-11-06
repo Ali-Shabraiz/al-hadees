@@ -86,6 +86,7 @@ function getImageSrc(bookId){
         case "Man-La-Yahduruh-al-Faqih-Volume-2-Saduq":
         case "Man-La-Yahduruh-al-Faqih-Volume-3-Saduq":
         case "Man-La-Yahduruh-al-Faqih-Volume-4-Saduq":
+        case "Man-La-Yahduruh-al-Faqih-Volume-5-Saduq":
             return "https://thaqalayn.com/images/hadith/covers/34-round.webp";
             break;
         case "Tahdhib-al-Ahkam-Volume-1-Tusi":
