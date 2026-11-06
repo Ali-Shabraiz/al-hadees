@@ -40,16 +40,18 @@ function displayBooks(books, length) {
     for (var i = 0; i < length; i++) {
         var book = document.createElement('div');
         book.classList.add('book');
-        book.innerHTML = `<img src="${books[i].bookCover}" alt="">
-                          <img class="visibleImg" src="${books[i].bookCover}" alt="">
+        book.innerHTML = `<img src="${getImageSrc(books[i].bookId)}" alt="">
+                          <img class="visibleImg" src="${getImageSrc(books[i].bookId)}" alt="">
             <div class="content">
                 <h2 class="name">${books[i].bookId}</h2>
+                
                 <i class="englishName">${books[i].englishName}</i>
                 <q class="authorName">${books[i].author}</q>
                 <button class="opener" value="${books[i].bookId}" onclick="getBookData(this.value)"></button>
             </div>
             `
             ;
+            console.log(books[i].bookId);
         booksContainer.appendChild(book);
     }
 }
@@ -67,12 +69,84 @@ function openPage(open, close) {
     }
 
 }
+
+function getImageSrc(bookId){
+    switch(bookId){
+        case "Al-Kafi-Volume-1-Kulayni":
+        case "Al-Kafi-Volume-2-Kulayni":
+        case "Al-Kafi-Volume-3-Kulayni":
+        case "Al-Kafi-Volume-4-Kulayni":
+        case "Al-Kafi-Volume-5-Kulayni":
+        case "Al-Kafi-Volume-6-Kulayni":
+        case "Al-Kafi-Volume-7-Kulayni":
+        case "Al-Kafi-Volume-8-Kulayni":
+            return "https://thaqalayn.com/images/hadith/covers/1-round.webp"
+            break; 
+        case "Man-La-Yahduruh-al-Faqih-Volume-1-Saduq":
+        case "Man-La-Yahduruh-al-Faqih-Volume-2-Saduq":
+        case "Man-La-Yahduruh-al-Faqih-Volume-3-Saduq":
+        case "Man-La-Yahduruh-al-Faqih-Volume-4-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/34-round.webp";
+            break;
+        case "Tahdhib-al-Ahkam-Volume-1-Tusi":
+        case "Tahdhib-al-Ahkam-Volume-2-Tusi":
+        case "Tahdhib-al-Ahkam-Volume-3-Tusi":
+        case "Tahdhib-al-Ahkam-Volume-4-Tusi":
+            return "https://thaqalayn.com/images/hadith/covers/41-round.webp";
+            break;
+        case "Uyun-akhbar-al-Rida-Volume-1-Saduq":
+        case "Uyun-akhbar-al-Rida-Volume-2-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/11-round.webp"
+            break;
+        case "Al-Tawhid-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/14-round.webp";
+            break;
+        case "Kamil-al-Ziyarat-Qummi":
+            return "https://thaqalayn.com/images/hadith/covers/24-round.webp";
+            break;
+        case "Al-Khisal-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/10-round.webp";
+        case "Thawab-al-Amal-wa-iqab-al-Amal-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/23-round.webp";
+        case "Maani-al-Akhbar-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/28-round.webp";
+        case "Al-Amali-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/29-round.webp";
+        case "Al-Amali-Mufid":
+            return "https://thaqalayn.com/images/hadith/covers/13-round.webp";
+        case "Kamal-al-Din-wa-Tamam-al-Nima-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/39-round.webp";
+        case "Kitab-al-Ghayba-Tusi":
+            return "https://thaqalayn.com/images/hadith/covers/27-round.webp";
+        case "Kitab-al-Ghayba-Numani":
+            return "https://thaqalayn.com/images/hadith/covers/22-round.webp";
+        case "Mujam-al-Ahadith-al-Mutabara-Muhsini":
+            return "https://thaqalayn.com/images/hadith/covers/9-round.webp";
+        case "Nahj-al-Balagha-Radi":
+            return "https://thaqalayn.com/images/hadith/covers/32-round.webp";
+        case "Risalat-al-Huquq-Abidin":
+            return "https://thaqalayn.com/images/hadith/covers/33-round.webp";
+        case "Kitab-al-Duafa-Ghadairi":
+            return "https://thaqalayn.com/images/hadith/covers/17-round.webp";
+        case "Kitab-al-Mumin-Ahwazi":
+            return "https://thaqalayn.com/images/hadith/covers/30-round.webp";
+        case "Kitab-al-Zuhd-Ahwazi":
+            return "https://thaqalayn.com/images/hadith/covers/31-round.webp";
+        case "Fadail-al-Shia-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/25-round.webp";
+        case "Sifat-al-Shia-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/26-round.webp";
+        case "Fadail-al-Ashhur-al-Thalatha-Saduq":
+            return "https://thaqalayn.com/images/hadith/covers/40-round.webp";
+
+    }
+}
 function getBookInfo(bookName) {
     var filteredData = allBooks.find(book => book.bookId == bookName);
-    // console.log(filteredData);
+    console.log(filteredData.bookId);
     bookOpened.innerHTML = `
       <div class="info">
-            <img src="${filteredData.bookCover}" alt="">
+            <img src="${getImageSrc(filteredData.bookId)}" alt="">
             <div class="content">
                 <h1>${filteredData.bookId}</h1>
                 <h3>${filteredData.englishName}</h3>
