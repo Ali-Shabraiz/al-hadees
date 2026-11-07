@@ -300,6 +300,9 @@
        .bookOpened {
            flex-direction: column;
        }
+       .hadithData{
+            width: 100% !important;
+       }
 
        .bookOpened .info {
            min-width: 100%;
